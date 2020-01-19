@@ -51,14 +51,20 @@ var userUpperAnswer = document.getElementById("uppercase-answer").value;
 var userNumberAnswer = document.getElementById("number-answer").value;
 var userSpecialAnswer = document.getElementById("specialchar-answer").value;
 
+if (userPassLength === "0" || userPassLength === "") {
+    confirmNotice("error", "Please input a valid password length.");
+}
+
+else if (userLowerAnswer >= "0" || userUpperAnswer >= "0" || userNumberAnswer >= "0" || userSpecialAnswer >= "0") {
+
         //...................VERIFYING USER INPUT
 var totalDivideHere = JSON.parse(userLowerAnswer) + JSON.parse(userUpperAnswer) + JSON.parse(userNumberAnswer) + JSON.parse(userSpecialAnswer);
 console.log("PASSWORD LENGTH: " + userPassLength);
 console.log("SUM OF USER INPUT: " + totalDivideHere);
 
 if (userPassLength == totalDivideHere) {
-    confirmNotice("success", "you're awesome");
-    
+    confirmNotice("success", "Sucess! You're awesome.");
+
         // ......................GETTING RANDOM PASSWORD
 for (i = 0; i < userLowerAnswer; i++) {
     var output = array1lower[Math.floor(Math.random() * 25)];
@@ -102,8 +108,16 @@ finalProduct.appendChild(span);
 finalPassword = "";
 }
         // ............................if user input is not valid
-else {
-    confirmNotice("error", "you suck");
+    else if (userPassLength != totalDivideHere) {
+        confirmNotice("error", "Your numbers do not add up.");
+    }
 }
 
+else if (userLowerAnswer === "" || userUpperAnswer === "" || userNumberAnswer === "" || userSpecialAnswer === "") {
+    confirmNotice("error", "Please don't leave any fields blank.");
+}
+
+else {
+    confirmNotice("error", "Error.");
+}
 });
