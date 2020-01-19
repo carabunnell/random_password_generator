@@ -1,8 +1,9 @@
 
-var lengthOfPassword = document.querySelector("#password-length-total");
+// var lengthOfPassword = document.querySelector("#password-length-total");
 
-var finalProduct = document.querySelector("#user-password-final");
-var submitting = document.querySelector("#sign-up");
+var finalProduct = document.querySelector("#user-password-final"); //used at end of code
+var submitting = document.querySelector("#sign-up"); //used at end of code
+var msgDiv = document.querySelector("#msg"); // is referenced in line 34
 
 //=============================ARRAYS==========================
 var lowerArray = "abcdefghijklmnopqrstuvwxyz"; // temp array
@@ -28,6 +29,12 @@ function shuffle(arra1) {
     return arra1;
 }
 
+//======================FUNCTION FOR ERROR/SUCCESS MSG=========================
+function confirmNotice(type, message) {
+    msgDiv.textContent = message;
+    msgDiv.setAttribute("class", type);
+  }
+
 //=============================FORM SUBMIT=====================
 submitting.addEventListener("click", function(event) {
     event.preventDefault();
@@ -37,7 +44,7 @@ submitting.addEventListener("click", function(event) {
     var totalOutputUpper = "";  // variable used in for loop
     var totalOutputSpecial = "";  // variable used in for loop
 
-        //.................. linking elements from html file
+        //.................. gathering input from html elements
 var userPassLength = document.getElementById("password-length-total").value;
 var userLowerAnswer = document.getElementById("lowercase-answer").value;
 var userUpperAnswer = document.getElementById("uppercase-answer").value;
@@ -50,6 +57,7 @@ console.log("PASSWORD LENGTH: " + userPassLength);
 console.log("SUM OF USER INPUT: " + totalDivideHere);
 
 if (userPassLength == totalDivideHere) {
+    confirmNotice("success", "you're awesome");
     
         // ......................GETTING RANDOM PASSWORD
 for (i = 0; i < userLowerAnswer; i++) {
@@ -95,24 +103,7 @@ finalPassword = "";
 }
         // ............................if user input is not valid
 else {
-    alert("You suck, make your numbers add up, moron")
+    confirmNotice("error", "you suck");
 }
 
 });
-
-// //=====================FUNCTION FOR SCAMBLING PASSWORD=========
-// function shuffle(arra1) {
-//     var ctr = arra1.length, temp, index;
-
-//     while (ctr > 0) {  // While there are elements in the array
-//                 // Pick a random index
-//         index = Math.floor(Math.random() * ctr);
-//                 // Decrease ctr by 1
-//         ctr--;
-//                 // And swap the last element with it
-//         temp = arra1[ctr];
-//         arra1[ctr] = arra1[index];
-//         arra1[index] = temp;
-//     }
-//     return arra1;
-// }
