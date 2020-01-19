@@ -1,61 +1,57 @@
-//global variable definitions 
- //this is taken from user input to determine total password length
-// these variables are for maybe calculating the array amount....we'll see
-            // var divide1
-            // var divide2
-            // var divide3
-            // var divide4 
-// new vars
-// var totalDivide // technially not needed, this var is used to add the other divides up
-// var newLength // this is the final array amount each used
-
-// syncing to html id's of lenght: #password-length-total
-//would you like lowercase #lowercase-answer
-//upper? #uppercase-answer. number? #number-answer specal char? #specialchar-answer
 
 var lengthOfPassword = document.querySelector("#password-length-total");
-// these variables are taken from user input and will be used to determine how much of each array to include in final password
-// var input1lower = document.querySelector("#lowercase-answer");
-// var input2upper = document.querySelector("#uppercase-answer");
-// var input3number = document.querySelector("#number-answer");
-// var input4special = document.querySelector("#specialchar-answer"); 
+
 var finalProduct = document.querySelector("#user-password-final");
 var submitting = document.querySelector("#sign-up");
 
-var array1lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var array2upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var array3number = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var array4special = ["!", "@", "#", "$", "%", "^", "&", "*"];
+//=============================ARRAYS==========================
+var lowerArray = "abcdefghijklmnopqrstuvwxyz"; // temp array
+var array1lower = lowerArray.split("");
+var upperArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // temp array
+var array2upper = upperArray.split("");
+var numberArray = "123456789";
+var array3number = numberArray.split(""); // temp array
+var specialArray = "!@#$%^&*";
+var array4special = specialArray.split(""); // temp array
 
-// var totalOutput = "";
-// var totalOutputNum = "";
-// var totalOutputUpper = "";
-// var totalOutputSpecial = "";
+//=====================FUNCTION FOR SCAMBLING PASSWORD=========
+function shuffle(arra1) {
+    var ctr = arra1.length, temp, index;
 
+    while (ctr > 0) {        // While there are elements in the array // Pick a random index
+        index = Math.floor(Math.random() * ctr);
+        ctr--;               // Decrease ctr by 1
+        temp = arra1[ctr];   // And swap the last element with it
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+    }
+    return arra1;
+}
 
-//When form is submitted....
+//=============================FORM SUBMIT=====================
 submitting.addEventListener("click", function(event) {
     event.preventDefault();
 
-    var totalOutput = "";
-    var totalOutputNum = "";
-    var totalOutputUpper = "";
-    var totalOutputSpecial = "";
+    var totalOutput = "";  // variable used in for loop
+    var totalOutputNum = "";  // variable used in for loop
+    var totalOutputUpper = "";  // variable used in for loop
+    var totalOutputSpecial = "";  // variable used in for loop
 
+        //.................. linking elements from html file
 var userPassLength = document.getElementById("password-length-total").value;
 var userLowerAnswer = document.getElementById("lowercase-answer").value;
 var userUpperAnswer = document.getElementById("uppercase-answer").value;
 var userNumberAnswer = document.getElementById("number-answer").value;
 var userSpecialAnswer = document.getElementById("specialchar-answer").value;
-// console.log(userPassLength);
-// console.log(input1lower + input2upper + input3number + input4special);
+
+        //...................VERIFYING USER INPUT
 var totalDivideHere = JSON.parse(userLowerAnswer) + JSON.parse(userUpperAnswer) + JSON.parse(userNumberAnswer) + JSON.parse(userSpecialAnswer);
-console.log("password length: " + userPassLength);
-console.log("sum of input: " + totalDivideHere);
+console.log("PASSWORD LENGTH: " + userPassLength);
+console.log("SUM OF USER INPUT: " + totalDivideHere);
 
 if (userPassLength == totalDivideHere) {
     
-
+        // ......................GETTING RANDOM PASSWORD
 for (i = 0; i < userLowerAnswer; i++) {
     var output = array1lower[Math.floor(Math.random() * 25)];
     totalOutput = totalOutput + output;
@@ -81,59 +77,42 @@ for (i = 0; i < userSpecialAnswer; i++) {
 }
 console.log(userSpecialAnswer + " special characters: " + totalOutputSpecial);
 
-
-//===============================================================
-//test
-
-
-// console.log(totalOutput + totalOutputNum);
+        // ...........................creating temp password, calling scramble function, outputing password
 var temporaryPassword = totalOutput + totalOutputUpper + totalOutputNum + totalOutputSpecial;
 console.log("Temporary Password: " + temporaryPassword);
 var newArray = temporaryPassword.split("");
-// console.log(newArray);
 
 shuffle(newArray);
 console.log("Scrambled Password: " + newArray.join(""));
 var finalPassword = newArray.join("");
 
-// finalProduct.textContent = finalPassword;
 
 var passwordText = "Password: ";
 var span = document.createElement("div");
 span.textContent = (passwordText + finalPassword);
-// passwordText.setAttribute("strong");
 finalProduct.appendChild(span);
 finalPassword = "";
 }
-
+        // ............................if user input is not valid
 else {
     alert("You suck, make your numbers add up, moron")
 }
 
 });
 
+// //=====================FUNCTION FOR SCAMBLING PASSWORD=========
+// function shuffle(arra1) {
+//     var ctr = arra1.length, temp, index;
 
-function shuffle(arra1) {
-    var ctr = arra1.length, temp, index;
-
-// While there are elements in the array
-    while (ctr > 0) {
-// Pick a random index
-        index = Math.floor(Math.random() * ctr);
-// Decrease ctr by 1
-        ctr--;
-// And swap the last element with it
-        temp = arra1[ctr];
-        arra1[ctr] = arra1[index];
-        arra1[index] = temp;
-    }
-    return arra1;
-}
-// will need to do a split me thinks
-// // varification of unput: 
-// if (input1lower + input2upper + input3number + input4special !== lenthOfPassword) {
-//     alert("you suck. make your numbers add up, moron");
-// };
-
-// submitting.addEventListenr("click", event);
-// event.preventDefault();
+//     while (ctr > 0) {  // While there are elements in the array
+//                 // Pick a random index
+//         index = Math.floor(Math.random() * ctr);
+//                 // Decrease ctr by 1
+//         ctr--;
+//                 // And swap the last element with it
+//         temp = arra1[ctr];
+//         arra1[ctr] = arra1[index];
+//         arra1[index] = temp;
+//     }
+//     return arra1;
+// }
