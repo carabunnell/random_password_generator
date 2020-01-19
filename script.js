@@ -27,15 +27,20 @@ var array2upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "
 var array3number = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var array4special = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
-var totalOutput = "";
-var totalOutputNum = "";
-var totalOutputUpper = "";
-var totalOutputSpecial = "";
+// var totalOutput = "";
+// var totalOutputNum = "";
+// var totalOutputUpper = "";
+// var totalOutputSpecial = "";
 
 
 //When form is submitted....
 submitting.addEventListener("click", function(event) {
     event.preventDefault();
+
+    var totalOutput = "";
+    var totalOutputNum = "";
+    var totalOutputUpper = "";
+    var totalOutputSpecial = "";
 
 var userPassLength = document.getElementById("password-length-total").value;
 var userLowerAnswer = document.getElementById("lowercase-answer").value;
@@ -90,8 +95,15 @@ var newArray = temporaryPassword.split("");
 shuffle(newArray);
 console.log("Scrambled Password: " + newArray.join(""));
 var finalPassword = newArray.join("");
-finalProduct.textContent = finalPassword;
 
+// finalProduct.textContent = finalPassword;
+
+var passwordText = "Password: ";
+var span = document.createElement("div");
+span.textContent = (passwordText + finalPassword);
+// passwordText.setAttribute("strong");
+finalProduct.appendChild(span);
+finalPassword = "";
 }
 
 else {
