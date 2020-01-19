@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href=style.css>
+</head>
+<body>
+    <div class="clearfix">
+        <div class="card">
+          <h2>Random Password Generator</h2>
+          <form method="POST">
+
+<!--important input id synched with script: password-length-total -->
+            <div class="input-group">
+              <label for="password-length-total">What is the length of your desired password?</label>
+              <input type="text" name="password-length-total" id="password-length-total" placeholder="Min is 8. Max is 128" />
+            </div>
+
+<!--important input id synched with script: lowercase-answer -->
+            <div class="input-group">
+              <label for="lowercase-answer">Would you like lowercase with that?</label>
+              <input type="text" name="lowercase-answer" id="lowercase-answer" placeholder="yes or no" />
+            </div>
+
+<!--important input id synched with script: uppercase-answer -->
+            <div class="input-group">
+                <label for="uppdercase-answer">Would you like uppercase with that?</label>
+                <input type="text" name="uppercase-answer" id="uppercase-answer" placeholder="yes or no" />
+              </div>
+
+<!--important input id synched with script: number-answer -->
+            <div class="input-group">
+              <label for="number-answer">Would you like numbers with that?</label>
+              <input type="text" name="number-answer" id="number-answer" placeholder="yes or no" />
+            </div>
+
+<!--important input id synched with script: specialchar-answer -->
+            <div class="input-group">
+              <label for="specialchar-answer">Would you like special characters with that?</label>
+              <input type="text" name="specialchar-answer" id="specialchar-answer" placeholder="yes or no" />
+            </div>
+
+<!--submit button-->
+            <div id="msg"></div>
+            <button id="sign-up">Submit</button>
+          </form>
+        </div>
+  
+        <div class="card">
+          <h2>Your new password:</h2>
+          <p><strong>Password:</strong> <span id="user-password-final"></span></p>
+        
+        </div>
+      </div>
+      <script src="./script.js"></script>
+  
+    
+</body>
+</html>
+
